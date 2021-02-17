@@ -7,7 +7,7 @@ const ReportCard = ({ ID, Country, TotalConfirmed, TotalDeaths, TotalRecovered }
   const Card = React.forwardRef(
     ({ href, onClick, ID, Country, TotalConfirmed, TotalDeaths, TotalRecovered }, ref) => {
       return (
-        <a href={href} onClick={onClick}>
+        <a onClick={onClick}>
           <PaisesCard
             ID={ID}
             Country={Country}

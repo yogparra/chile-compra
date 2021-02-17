@@ -1,6 +1,6 @@
 export async function buscarPaises() {
   try {
-    // /summary
+
     const response = await fetch(`${process.env.NEXT_PUBLIC_ENV_HOST_1}`, {
       method: "GET",
       headers: {
@@ -8,25 +8,27 @@ export async function buscarPaises() {
       },
     });
     const respuesta = await response.json();
-    return respuesta[1].Countries;
+    return respuesta.Countries;
   } catch (error) {
     console.log(error);
     return null;
   }
 }
 
-export async function buscarUnPais(pais) {
+export async function buscarUnPais( pais ) {
   try {
-    //console.log("ruta: "+`${process.env.NEXT_PUBLIC_ENV_HOST_2}/${pais}`);
-    //const response = await fetch(`${process.env.NEXT_PUBLIC_ENV_HOST_2}/${pais}`, {
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_ENV_HOST_2}`, {
+    //console.log("ruta: "+`${process.env.NEXT_PUBLIC_ENV_HOST_2}/${pais}`);
+
+    const response = await fetch(`${process.env.NEXT_PUBLIC_ENV_HOST_2}/${pais}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     });
     const respuesta = await response.json();
+    console.log(respuesta)
+
     const nuevaRespuesta = await mappedPaisDetalle(respuesta);
     return nuevaRespuesta
 
