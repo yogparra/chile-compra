@@ -41,6 +41,6 @@ Apis Publica
 # Imagenes
 
 <p align="center">
-  <img src="https://github.com/yogparra/chile-compra/blob/dev/img/detalle_de_un_pais.PNG?raw=true" width="350" title="hover text">
-  <img src="https://github.com/yogparra/chile-compra/blob/dev/img/listado_paises.PNG?raw=true" width="350" alt="accessibility text">
+  <img src="https://github.com/yogparra/chile-compra/blob/dev/img/listado_paises.PNG?raw=true" width="350" title="todos los paises">
+  <img src="https://github.com/yogparra/chile-compra/blob/dev/img/detalle_de_un_pais.PNG?raw=true" width="350" title="detalle de un pais">
 </p>
