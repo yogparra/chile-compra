@@ -10,10 +10,10 @@ https://github.com/mui-org/material-ui/tree/next/examples/nextjs
 
 Instalacion:
 ```
->git clone https://github.com/yogparra/chile-compra.git
->cd chile-compra.git
->npm i
->npm run dev
+git clone https://github.com/yogparra/chile-compra.git
+cd chile-compra.git
+npm i
+npm run dev
 ```
 
 # Observaciones
@@ -37,3 +37,10 @@ Apis Publica
   NEXT_PUBLIC_ENV_HOST_1="https://api.covid19api.com/summary"
   NEXT_PUBLIC_ENV_HOST_2="https://api.covid19api.com/country"
 ```
+
+# Imagenes
+
+<p align="center">
+  <img src="https://github.com/yogparra/chile-compra/blob/dev/img/detalle_de_un_pais.PNG?raw=true" width="350" title="hover text">
+  <img src="https://github.com/yogparra/chile-compra/blob/dev/img/listado_paises.PNG?raw=true" width="350" alt="accessibility text">
+</p>
