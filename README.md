@@ -1,4 +1,4 @@
-# Next.js
+# Next.js / Material-Ui
 
 ```
 Proyecto de referencia:
@@ -21,7 +21,7 @@ npm run dev
 Apis Emulada:
 
 ```
-  Dada la intermitencia de la api, se emulo su contenido, esto se configura en el .env.development
+  Dada la intermitencia de la api, se emuló su contenido, esto se configura en el .env.development
 
   #LOCAL
   NEXT_PUBLIC_ENV_HOST_1="http://localhost:3000/api/dumyPaises"
@@ -38,9 +38,16 @@ Apis Publica
   NEXT_PUBLIC_ENV_HOST_2="https://api.covid19api.com/country"
 ```
 
+# Deploy
+
+Sitio: Azure
+
+```
+  https://chile-compra.azurewebsites.net
+```
 # Imagenes
 
 <p align="center">
-  <img src="https://github.com/yogparra/chile-compra/blob/dev/img/listado_paises.PNG?raw=true" width="350" title="todos los paises">
-  <img src="https://github.com/yogparra/chile-compra/blob/dev/img/detalle_de_un_pais.PNG?raw=true" width="350" title="detalle de un pais">
+  <img src="https://github.com/yogparra/chile-compra/blob/dev/img/listado_paises_prd.PNG?raw=true" width="350" title="todos los paises">
+  <img src="https://github.com/yogparra/chile-compra/blob/dev/img/detalle_de_un_pais_prd.PNG?raw=true" width="350" title="detalle de un pais">
 </p>

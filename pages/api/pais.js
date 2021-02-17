@@ -1,7 +1,9 @@
 export async function buscarPaises() {
   try {
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_ENV_HOST_1}`, {
+    //const response = await fetch(`${process.env.NEXT_PUBLIC_ENV_HOST_1}`, {
+      
+    const response = await fetch(`https://api.covid19api.com/summary`, {  
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -19,8 +21,9 @@ export async function buscarUnPais( pais ) {
   try {
 
     //console.log("ruta: "+`${process.env.NEXT_PUBLIC_ENV_HOST_2}/${pais}`);
+    //const response = await fetch(`${process.env.NEXT_PUBLIC_ENV_HOST_2}/${pais}`, {
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_ENV_HOST_2}/${pais}`, {
+    const response = await fetch(`https://api.covid19api.com/country/${pais}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -58,6 +61,5 @@ export async function mappedPaisDetalle(respuesta) {
   });
 
   //console.log(pais);
-
   return pais;
 }
