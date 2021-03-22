@@ -1,120 +1,132 @@
-import React, { useState, useEffect } from "react";
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
-import ReportCard from "../src/ReportCard";
-import Copyright from "../src/Copyright";
-import { buscarPaises } from "../pages/api/pais";
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
+import { size } from 'lodash';
+import Copyright from '../src/Copyright';
+import Search from '../src/Search';
+import Circular from '../src/Circular';
+import { findProductsParameter } from './api/products';
 
 export default function Index() {
-  const [paises, setPaises] = useState(null);
+	const [products, setProducts] = useState(null);
+	const { query } = useRouter();
 
-  useEffect(() => {
-    (async () => {
-      const respuesta = await buscarPaises();
-      console.log(respuesta);
-      setPaises(respuesta || []);
-    })();
-  }, []);
+	useEffect(
+		() => {
+			(async () => {
+				if (size(query.query) > 3) {
+					const respuesta = await findProductsParameter(query.query);
+					console.log(respuesta);
+					setProducts(respuesta || []);
+				} else {
+					setProducts([]);
+				}
+			})();
+		},
+		[query]
+	);
 
-  const useStyles = makeStyles({
-    gridContainer: {
-      paddingLeft: "30px",
-      paddingRight: "30px",
-    },
-  });
+	const useStyles = makeStyles((theme) => ({
+		gridContainer: {
+			paddingLeft: '30px',
+			paddingRight: '30px'
+		},
+		root: {
+			maxWidth: 345
+		},
+		media: {
+			height: 100,
+			width: '30%',
+			marginLeft: '30%'
+		},
+		margin: {
+			margin: theme.spacing(1)
+		},
+	}));
 
-  const classes = useStyles();
+	const classes = useStyles();
 
-  return (
-    <Container maxWidth="lg">      
-      <Typography variant="h4" component="h1" component="p" colorPrimary>
-      <br />
-        Chile Compra
-      <br />
-      </Typography>
-      <Grid container spacing={4} className={classes.gridContainer}>
-      { !paises ? null : paises.map(({ ID, Country, TotalConfirmed, TotalDeaths, TotalRecovered }) => (
-          <Grid item xs={12} sm={6} md={4}>
-            <ReportCard
-              ID={ID}
-              Country={Country}
-              TotalConfirmed={TotalConfirmed}
-              TotalDeaths={TotalDeaths}
-              TotalRecovered={TotalRecovered} 
-            />
-          </Grid>
-        ))}
-      </Grid>
-      <br />      
-      <Copyright />
-    </Container>
-  );
+	return (
+		<Container maxWidth="lg">
+			<Typography variant="h5" component="h2">
+				<br />
+				Walmart-Frondend
+				<br />
+				<Search />
+				<br />
+			</Typography>
+
+			{!products && <Circular />}
+			{products &&
+				size(products) === 0 && (
+					<div>
+						<h2>No se han encontrado productos</h2>
+					</div>
+				)}
+			{size(products) > 0 && (
+				<Grid container spacing={4} className={classes.gridContainer}>
+					{!products ? null : (
+						products.map(({ id, brand, description, image, price, palindrome }) => (
+							<Grid key={id} item xs={12} sm={6} md={4}>
+								<Card className={classes.root}>
+									<CardActionArea>
+										<CardMedia className={classes.media} image={image} />
+										<CardContent>
+											<Typography gutterBottom variant="h5" component="h2">
+												<Box fontWeight="fontWeightBold">
+													{brand} - {description}
+												</Box>
+											</Typography>
+											{palindrome ? <Button size="medium">50% ${price}</Button> : <Button size="large">${price}</Button>}
+										</CardContent>
+									</CardActionArea>
+								</Card>
+							</Grid>
+						))
+					)}
+				</Grid>
+			)}
+			<Copyright />
+		</Container>
+	);
 }
 
+
 /*
-{paises ? paises[1].Country : 'Loading...'}
+{palindrome == 1 (
+	<div>
+		<h2>Si</h2>
+	</div>
+)}
 
-paises && (
-        <span>
-          Ess {paises[0].ID}
-        </span>
-      )  
-
-
-{paises.length === 0
-        ? `Rol: Sin Identificar`
-        : `Rol: Con Identificar`
-      }
+<Button size="medium">50% ${price}</Button>
+<br />
+<Button size="large">${price}</Button>
+*/
 
 
- <Container maxWidth="sm">
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Chile Compra
-        </Typography>        
-        <Copyright />
-      </Box>
-    </Container>
 
-import ProTip from '../src/ProTip';
-import Link from '../src/Link';
-import Box from "@material-ui/core/Box";
-<Link href="/about" color="secondary">
-  Go to the about page
-</Link>
-<ProTip />
 
-        <Grid item xs={12} sm={6} md={4}>
-          <Card />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <Card />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <Card />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <Card />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <Card />
-        </Grid>
-      </Grid>
-
+/*
+	"_id": "60572ac9433a4f7639c5444b",
+	"id": 1,
+	"brand": "ooy eqrceli",
+	"description": "rlñlw brhrka",
+	"image": "www.lider.cl/catalogo/images/whiteLineIcon.svg",
+	"price": 498724
 */
 
 /*
-{paises.Countries.map(({ ID, Country, NewConfirmed, NewDeaths, NewRecovered }) => (
-          <Grid item xs={12} sm={6} md={4}>
-            <Card
-              ID={ID}
-              Country={Country}
-              NewConfirmed={NewConfirmed}
-              NewDeaths={NewDeaths}
-              NewRecovered={NewRecovered} 
-            />
-          </Grid>
-        ))}
+<Typography gutterBottom variant="h5" component="h2">
+	{brand}
+</Typography>
 */

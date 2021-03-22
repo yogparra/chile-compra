@@ -13,7 +13,6 @@ export default function MyApp(props) {
   const { Component, pageProps } = props;
 
   React.useEffect(() => {
-    // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
@@ -23,7 +22,7 @@ export default function MyApp(props) {
   return (
     <CacheProvider value={cache}>
       <Head>
-        <title>Chile-compra</title>
+        <title>Walmart-Frondend</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <ThemeProvider theme={theme}>
